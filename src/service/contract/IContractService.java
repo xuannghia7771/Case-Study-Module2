@@ -1,2 +1,6 @@
-package service.contract;public class IContractService {
+package service.contract;
+
+import service.IService;
+
+public interface IContractService extends IService {
 }

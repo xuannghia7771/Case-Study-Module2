@@ -1,2 +1,4 @@
-package service.person;public class EmployeeService {
+package service.employee;
+
+public class EmployeeService implements IEmployeeService{
 }

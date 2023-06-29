@@ -1,2 +1,4 @@
-package repository.customer_repository;public class CustomerRepository {
+package repository.customer_repository;
+
+public class CustomerRepository implements ICustomerRepository{
 }

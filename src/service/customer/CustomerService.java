@@ -1,2 +1,4 @@
-package service.person;public class CustomerService {
+package service.customer;
+
+public class CustomerService implements ICustomerService {
 }

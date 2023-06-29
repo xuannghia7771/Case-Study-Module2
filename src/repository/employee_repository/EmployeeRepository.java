@@ -1,2 +1,6 @@
-package repository.employee_repository;public class EmployeeRepository {
+package repository.employee_repository;
+
+
+public class EmployeeRepository implements IEmployeeRepository {
+
 }

@@ -1,2 +1,4 @@
-package service.booking;public class BookingService {
+package service.booking;
+
+public class BookingService implements IBookingService{
 }

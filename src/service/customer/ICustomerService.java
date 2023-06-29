@@ -1,2 +1,6 @@
-package service.person;public interface ICustomerService {
+package service.customer;
+
+import service.IService;
+
+public interface ICustomerService extends IService {
 }

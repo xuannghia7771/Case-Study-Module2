@@ -1,2 +1,4 @@
-package repository.facility_repository;public class FacilityRepository {
+package repository.facility_repository;
+
+public class FacilityRepository implements IFacilityRepository{
 }

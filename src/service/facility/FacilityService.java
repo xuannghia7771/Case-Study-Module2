@@ -1,2 +1,4 @@
-package service.facility;public class FacilityService {
+package service.facility;
+
+public class FacilityService implements IFacilityService{
 }

@@ -1,2 +1,6 @@
-package service.booking;public interface IBookingService {
+package service.booking;
+
+import service.IService;
+
+public interface IBookingService extends IService {
 }

@@ -1,2 +1,6 @@
-package repository.contract_repository;public interface IContractRepository {
+package repository.contract_repository;
+
+import repository.IRepository;
+
+public interface IContractRepository extends IRepository {
 }

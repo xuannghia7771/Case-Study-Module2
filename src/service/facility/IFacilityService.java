@@ -1,2 +1,6 @@
-package service.facility;public interface IFacilityService {
+package service.facility;
+
+import service.IService;
+
+public interface IFacilityService extends IService {
 }
