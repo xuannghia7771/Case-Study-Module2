@@ -26,6 +26,14 @@ public class Room extends Facility {
 
     @Override
     public String toString() {
-        return super.toString() + String.format("%s|", getFreeService());
+        /*String serviceID, String serviceName, double usableArea, int rentalCost, int maxPeople, int rentalType, String freeService*/
+        return String.format("|%s|%s|%s|%s|%s|%s|%s|",
+                getServiceID(),
+                getServiceName(),
+                getUsableArea(),
+                getRentalCost(),
+                getMaxPeople(),
+                Facility.rentalTypeMap.get(getRentalType()),
+                getFreeService());
     }
 }

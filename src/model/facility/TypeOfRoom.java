@@ -47,7 +47,7 @@ public abstract class TypeOfRoom extends Facility {
 
     @Override
     public String toString() {
-        return String.format("|%s|%s|%.2f|%d|%d|%s|%s|%d|",
+        return String.format("|%s|%s|%s|%s|%s|%s|%s|%s|",
                 getServiceID(),
                 getServiceName(),
                 getUsableArea(),
