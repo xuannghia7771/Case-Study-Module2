@@ -33,8 +33,4 @@ public class Villa extends TypeOfRoom {
     public String toString() {
         return super.toString() + String.format("%s|", getPoolArea());
     }
-    public static void main(String[] args) {
-        Villa room = new Villa("asdad","zxcxc",200.5,123,12,2,1,3,50);
-        System.out.println(room);
-    }
 }
