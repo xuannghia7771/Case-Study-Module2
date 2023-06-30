@@ -74,11 +74,15 @@ public class Employee extends Person {
     public void setSalary(int salary) {
         this.salary = salary;
     }
+    public String getInfo(){
+        /*String name, String birthday, int gender, String IDCard, String phoneNumber, String email, String employeeID, int academicLevel, int position, int salary*/
+        return getName()+","+getBirthday()+","+Person.genderMap.get(getGender())+","+getIDCard()+","+getPhoneNumber()+","+getEmail()+","+getEmployeeID()+","+levelMap.get(getAcademicLevel())+","+positionMap.get(getPosition())+","+getSalary();
+    }
 
     @Override
     public String toString() {
         /*Employee(String employeeID, int academicLevel, int position, int salary)*/
-        return super.toString() + String.format("%s|%s|%s|%d",
+        return super.toString() + String.format("%s|%s|%s|%s",
                 getEmployeeID(),
                 levelMap.get(getAcademicLevel()),
                 positionMap.get(getPosition()),
