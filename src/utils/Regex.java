@@ -18,17 +18,44 @@ public class Regex {
         } while (!name.matches(REGEX_NAME));
         return name;
     }
-
-    public static int validateGender() {
-        int gender;
+    public static String validateBirth(){
+        final String REGEX_DATE = "^(0?[1-9]|[12][0-9]|3[01])[/\\-](0?[1-9]|1[012])[/\\-]\\d{4}$";
+        String date;
         do {
-            System.out.println("Enter Gender (0-Female) (1-Male): ");
-            gender = Integer.parseInt(sc.nextLine());
-            if (gender != 0 && gender != 1) {
-                System.out.println("GENDER IS INVALID!");
+            System.out.println("Enter Name: ");
+            date = sc.nextLine();
+            if (!date.matches(REGEX_DATE) && is18Plus(date)) {
+                System.out.println("DATE IS INVALID! OR AGE IS NOT ENOUGH 18");
             }
-        } while (gender != 0 && gender != 1);
-        return gender;
+        } while (!date.matches(REGEX_DATE) && is18Plus(date));
+        return date;
+    }
+    public static boolean is18Plus(String dateStr) {
+        String[] array = dateStr.split("/");
+        Calendar calendar = Calendar.getInstance();
+        int year = Integer.parseInt(array[2]) + 18;
+        int month = Integer.parseInt(array[1]);
+        int day = Integer.parseInt(array[0]);
+        calendar.set(year, month, day);
+        Date date = new Date();
+        int compare = date.compareTo(calendar.getTime());
+        return compare >= 0;
+    }
+    public static int validateGender() {
+        try {
+            int gender;
+            do {
+                System.out.println("Enter Gender (0-Female) (1-Male): ");
+                gender = Integer.parseInt(sc.nextLine());
+                if (gender != 0 && gender != 1) {
+                    System.out.println("GENDER IS INVALID!");
+                }
+            } while (gender != 0 && gender != 1);
+            return gender;
+        }catch (Exception e){
+            System.out.println("WRONG CHOICE!");
+            return validateGender();
+        }
     }
 
     public static String validatePhoneNumber() {
@@ -45,13 +72,13 @@ public class Regex {
     }
 
     public static String validateEmail() {
-        final String REGEX_EMAIL = "^[A-Za-z0-9]+[A-Za-z0-9]*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)(\\.[A-Za-z0-9]?)$";
+        final String REGEX_EMAIL = "^[A-Za-z0-9]+[A-Za-z0-9]*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)$";
         String email;
         do {
             System.out.println("Enter email: ");
             email = sc.nextLine();
             if (!email.matches(REGEX_EMAIL)) {
-                System.out.println("PHONE NUMBER IS INVALID!");
+                System.out.println("EMAIL IS INVALID!");
             }
         } while (!email.matches(REGEX_EMAIL));
         return email;

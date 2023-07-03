@@ -10,7 +10,7 @@ public class ReadAndWriteFile {
         FileWriter fileWriter = null;
         BufferedWriter bufferedWriter = null;
         try {
-            fileWriter = new FileWriter(file);
+            fileWriter = new FileWriter(file,append);
             bufferedWriter = new BufferedWriter(fileWriter);
             bufferedWriter.write(text);
             bufferedWriter.newLine();
@@ -18,6 +18,22 @@ public class ReadAndWriteFile {
             fileWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+    public static void updateFile(String pathFile, List<String> list) {
+        try {
+            FileWriter fileWriter = new FileWriter(pathFile, false);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            for (String line : list) {
+                bufferedWriter.write(line);
+                bufferedWriter.newLine();
+            }
+
+            bufferedWriter.close();
+            fileWriter.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
     public static List<String> readFile(String pathFile){

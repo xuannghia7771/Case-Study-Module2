@@ -1,13 +1,17 @@
 package controller;
 
+import service.employee.EmployeeService;
+import service.employee.IEmployeeService;
 import utils.ConsoleColor;
 
 import java.util.*;
 
 public class FuramaController {
     static Scanner sc = new Scanner(System.in);
+    IEmployeeService employeeService = new EmployeeService();
 
-    public static void displayEmployeeMenu() {
+    public void displayEmployeeMenu() {
+        boolean flag = true;
         do {
             System.out.println(ConsoleColor.RED_BOLD + "----------MENU EMPLOYEE MANAGEMENT----------" + ConsoleColor.RESET);
             System.out.println(ConsoleColor.RED + "1.\tDisplay list employees\n" + ConsoleColor.RESET +
@@ -18,20 +22,27 @@ public class FuramaController {
                 int choiceEmpManagement = Integer.parseInt(sc.nextLine());
                 switch (choiceEmpManagement) {
                     case 1:
+                        employeeService.display();
+                        break;
                     case 2:
+                        employeeService.addNewEmployee();
+                        break;
                     case 3:
+                        employeeService.edit();
                     case 4:
-                        displayMainMenu();
+                        flag = false;
+                        break;
                     default:
                         System.out.println("PLEASE CHOSE RIGHT MENU ACCORDING TO THE FOLLOWING " + ConsoleColor.RED_BOLD + "'EMPLOYEE MANAGEMENT MENU'" + ConsoleColor.RESET + "!");
                 }
             } catch (NumberFormatException e) {
                 System.err.println("WRONG NUMBER FORMAT!");
             }
-        } while (true);
+        } while (flag);
     }
 
-    public static void displayCustomerMenu() {
+    public void displayCustomerMenu() {
+        boolean flag = true;
         do {
             System.out.println(ConsoleColor.CYAN_BOLD + "----------MENU CUSTOMER MANAGEMENT----------" + ConsoleColor.RESET);
             System.out.println(ConsoleColor.CYAN + "1.\tDisplay list customers\n" + ConsoleColor.RESET +
@@ -45,18 +56,19 @@ public class FuramaController {
                     case 2:
                     case 3:
                     case 4:
-                        displayMainMenu();
+                        flag = false;
+                        break;
                     default:
                         System.out.println("PLEASE CHOSE RIGHT MENU ACCORDING TO THE FOLLOWING " + ConsoleColor.RED_BOLD + "'CUSTOMER MANAGEMENT MENU'" + ConsoleColor.RESET + "!");
                 }
             } catch (NumberFormatException e) {
                 System.err.println("WRONG NUMBER FORMAT!");
             }
-
-        } while (true);
+        } while (flag);
     }
 
-    public static void displayFacility() {
+    public void displayFacility() {
+        boolean flag = true;
         do {
             System.out.println(ConsoleColor.GREEN_BOLD + "----------MENU FACILITY MANAGEMENT----------" + ConsoleColor.RESET);
             System.out.println(ConsoleColor.GREEN + "1\tDisplay list facility\n" + ConsoleColor.RESET +
@@ -70,17 +82,19 @@ public class FuramaController {
                     case 2:
                     case 3:
                     case 4:
-                        displayMainMenu();
+                        flag = false;
+                        break;
                     default:
                         System.out.println("PLEASE CHOSE RIGHT MENU ACCORDING TO THE FOLLOWING " + ConsoleColor.RED_BOLD + "'FACILITY MANAGEMENT MENU'" + ConsoleColor.RESET + "!");
                 }
             } catch (NumberFormatException e) {
                 System.err.println("WRONG NUMBER FORMAT!");
             }
-        } while (true);
+        } while (flag);
     }
 
-    public static void displayBookingMenu() {
+    public void displayBookingMenu() {
+        boolean flag = true;
         do {
             System.out.println(ConsoleColor.PURPLE_BOLD + "----------MENU BOOKING MANAGEMENT----------" + ConsoleColor.RESET);
             System.out.println(ConsoleColor.PURPLE + "1.\tAdd new booking\n" + ConsoleColor.RESET +
@@ -98,17 +112,19 @@ public class FuramaController {
                     case 4:
                     case 5:
                     case 6:
-                        displayMainMenu();
+                        flag = false;
+                        break;
                     default:
                         System.out.println("PLEASE CHOSE RIGHT MENU ACCORDING TO THE FOLLOWING " + ConsoleColor.RED_BOLD + "'BOOKING MANAGEMENT MENU'" + ConsoleColor.RESET + "!");
                 }
             } catch (NumberFormatException e) {
                 System.err.println("WRONG NUMBER FORMAT!");
             }
-        } while (true);
+        } while (flag);
     }
 
-    public static void displayPromotionMenu() {
+    public void displayPromotionMenu() {
+        boolean flag = true;
         do {
             System.out.println(ConsoleColor.YELLOW_BOLD + "----------MENU PROMOTION MANAGEMENT----------" + ConsoleColor.RESET);
             System.out.println(ConsoleColor.YELLOW + "1.\tDisplay list customers use service\n" + ConsoleColor.RESET +
@@ -120,19 +136,20 @@ public class FuramaController {
                     case 1:
                     case 2:
                     case 3:
-                        displayMainMenu();
+                        flag = false;
+                        break;
                     default:
                         System.out.println("PLEASE CHOSE RIGHT MENU ACCORDING TO THE FOLLOWING " + ConsoleColor.RED_BOLD + "'PROMOTION MANAGEMENT MENU'" + ConsoleColor.RESET + "!");
                 }
             } catch (NumberFormatException e) {
                 System.err.println("WRONG NUMBER FORMAT!");
             }
-        } while (true);
+        } while (flag);
     }
 
-    public static void displayMainMenu() {
-        System.out.println(ConsoleColor.BLACK_BOLD + ConsoleColor.WHITE_BACKGROUND + "----------MAIN MENU----------" + ConsoleColor.RESET);
+    public void displayMainMenu() {
         do {
+            System.out.println(ConsoleColor.BLACK_BOLD + ConsoleColor.WHITE_BACKGROUND + "----------MAIN MENU----------" + ConsoleColor.RESET);
             System.out.println(ConsoleColor.RED_UNDERLINED + "1.\tEmployee Management\n" + ConsoleColor.RESET +
                     ConsoleColor.CYAN_UNDERLINED + "2.\tCustomer Management\n" + ConsoleColor.RESET +
                     ConsoleColor.GREEN_UNDERLINED + "3.\tFacility Management \n" + ConsoleColor.RESET +
@@ -144,14 +161,19 @@ public class FuramaController {
                 switch (choice) {
                     case 1:
                         displayEmployeeMenu();
+                        break;
                     case 2:
                         displayCustomerMenu();
+                        break;
                     case 3:
                         displayFacility();
+                        break;
                     case 4:
                         displayBookingMenu();
+                        break;
                     case 5:
                         displayPromotionMenu();
+                        break;
                     case 6:
                         System.out.println(ConsoleColor.BLACK_BOLD + ConsoleColor.WHITE_BACKGROUND + "----------SEE YOU AGAIN!----------" + ConsoleColor.RESET);
                         System.exit(0);
@@ -165,4 +187,6 @@ public class FuramaController {
         } while (true);
 
     }
+
+
 }

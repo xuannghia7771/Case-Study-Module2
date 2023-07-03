@@ -3,7 +3,8 @@ package service.employee;
 import service.IService;
 
 public interface IEmployeeService extends IService {
-    void displayList();
+    void display();
     void addNewEmployee();
-    void editEmployee();
+    void edit();
+
 }

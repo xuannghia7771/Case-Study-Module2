@@ -3,45 +3,60 @@ package service.employee;
 import model.person.Employee;
 import repository.employee_repository.EmployeeRepository;
 import repository.employee_repository.IEmployeeRepository;
+import utils.Regex;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class EmployeeService implements IEmployeeService{
     Scanner sc = new Scanner(System.in);
     IEmployeeRepository employeeRepository = new EmployeeRepository();
     @Override
-    public void displayList() {
-
+    public void display() {
+        List<Employee> employeeList = employeeRepository.display();
+        for (Employee e : employeeList) {
+            System.out.println(e);
+        }
     }
 
     @Override
     public void addNewEmployee() {
         System.out.println("-----Adding New Employee-----");
-        System.out.println("Enter new name: ");
-        String name = sc.nextLine();
-        System.out.println("Enter new birthday: ");
-        String birthday = sc.nextLine();
-        System.out.println("Chose gender 1-Male, 0-Female: ");
-        int gender = Integer.parseInt(sc.nextLine());
-        System.out.println("Enter new IDCard: ");
-        String IDCard = sc.nextLine();
-        System.out.println("Enter new phone number: ");
-        String phoneNumber = sc.nextLine();
-        System.out.println("Enter new email: ");
-        String email = sc.nextLine();
-        System.out.println("Enter new employeeID: ");
-        String employeeID = sc.nextLine();
-        System.out.println("Chose academic level 1-Trung cấp, 2-Cao đẳng, 3-Đại học, 4-Sau đại học: ");
-        int level = Integer.parseInt(sc.nextLine());
-        System.out.println("Chose position 1-Lễ tân, 2-Phục vụ, 3-Chuyên viên, 4-Giám sát, 5-Quản lý, 6-Giám đốc: ");
-        int position = Integer.parseInt(sc.nextLine());
-        System.out.println("Enter new salary: ");
-        int salary = Integer.parseInt(sc.nextLine());
+        String name = Regex.validateName();
+        String birthday = Regex.validateBirth();
+        int gender = Regex.validateGender();
+        String IDCard = Regex.validateIDCard();
+        String phoneNumber = Regex.validatePhoneNumber();
+        String email = Regex.validateEmail();
+        String employeeID = Regex.validateEmployeeID();
+        int level = Regex.validateAcademicLevel();
+        int position = Regex.validatePosition();
+        int salary = Regex.validateSalary();
         Employee employee = new Employee(name,birthday,gender,IDCard,phoneNumber,email,employeeID,level,position,salary);
+        employeeRepository.addIntoRepo(employee);
     }
-
     @Override
-    public void editEmployee() {
+    public void edit() {
+        System.out.println("Nhập mã nhân viên muốn sửa, ");
+        String id = Regex.validateEmployeeID();
+        int index = employeeRepository.searchID(id);
+        if (index == -1) {
+            System.out.println("id Không tồn tại!");
+        } else {
+            String name = Regex.validateName();
+            String date = Regex.validateBirth();
+            int gender = Regex.validateGender();
+            String IDCard = Regex.validateIDCard();
+            String phoneNumber = Regex.validatePhoneNumber();
+            String email = Regex.validateEmail();
+            String employeeID = Regex.validateEmployeeID();
+            int level = Regex.validateAcademicLevel();
+            int position = Regex.validatePosition();
+            int salary = Regex.validateSalary();
+
+            Employee editEmployee = new Employee(name,date,gender,IDCard,phoneNumber,email,employeeID,level,position,salary);
+            employeeRepository.edit(index, editEmployee);
+        }
 
     }
 }
