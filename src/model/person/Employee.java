@@ -35,12 +35,22 @@ public class Employee extends Person {
         this.salary = salary;
     }
 
-    public Employee(String name, String birthday, int gender, String IDCard, String phoneNumber, String email, String employeeID, int academicLevel, int position, int salary) {
+    public Employee(String name, String birthday, boolean gender, String IDCard, String phoneNumber, String email, String employeeID, int academicLevel, int position, int salary) {
         super(name, birthday, gender, IDCard, phoneNumber, email);
         this.employeeID = employeeID;
         this.academicLevel = academicLevel;
         this.position = position;
         this.salary = salary;
+    }
+    private String levelInString;
+    private String positionInString;
+    private String salaryInString;
+    public Employee(String name, String birthday, boolean gender, String IDCard, String phoneNumber, String email, String employeeID, String level, String role, String salary) {
+        super(name, birthday, gender, IDCard, phoneNumber, email);
+        this.employeeID = employeeID;
+        levelInString = level;
+        positionInString =role;
+        salaryInString = salary;
     }
 
     public String getEmployeeID() {
@@ -54,13 +64,18 @@ public class Employee extends Person {
     public int getAcademicLevel() {
         return academicLevel;
     }
-
+    public String getLevel(){
+        return levelMap.get(getAcademicLevel());
+    }
     public void setAcademicLevel(int academicLevel) {
         this.academicLevel = academicLevel;
     }
 
     public int getPosition() {
         return position;
+    }
+    public String getRole(){
+        return positionMap.get(getPosition());
     }
 
     public void setPosition(int position) {
@@ -76,16 +91,40 @@ public class Employee extends Person {
     }
     public String getInfo(){
         /*String name, String birthday, int gender, String IDCard, String phoneNumber, String email, String employeeID, int academicLevel, int position, int salary*/
-        return getName()+","+getBirthday()+","+Person.genderMap.get(getGender())+","+getIDCard()+","+getPhoneNumber()+","+getEmail()+","+getEmployeeID()+","+levelMap.get(getAcademicLevel())+","+positionMap.get(getPosition())+","+getSalary();
+        return getName()+","+getBirthday()+","+getGender()+","+getIDCard()+","+getPhoneNumber()+","+getEmail()+","+getEmployeeID()+","+levelMap.get(getAcademicLevel())+","+positionMap.get(getPosition())+","+getSalary();
     }
 
     @Override
     public String toString() {
         /*Employee(String employeeID, int academicLevel, int position, int salary)*/
-        return super.toString() + String.format("%s|%s|%s|%s",
+        return super.toString() + String.format("|%s|%s|%s|%s",
                 getEmployeeID(),
-                levelMap.get(getAcademicLevel()),
-                positionMap.get(getPosition()),
-                getSalary());
+                getLevelInString(),
+                getPositionInString(),
+                getSalaryInString());
+    }
+
+    public String getLevelInString() {
+        return levelInString;
+    }
+
+    public void setLevelInString(String levelInString) {
+        this.levelInString = levelInString;
+    }
+
+    public String getPositionInString() {
+        return positionInString;
+    }
+
+    public void setPositionInString(String positionInString) {
+        this.positionInString = positionInString;
+    }
+
+    public String getSalaryInString() {
+        return salaryInString;
+    }
+
+    public void setSalaryInString(String salaryInString) {
+        this.salaryInString = salaryInString;
     }
 }

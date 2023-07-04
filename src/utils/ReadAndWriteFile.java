@@ -48,6 +48,9 @@ public class ReadAndWriteFile {
             while ((line = bufferedReader.readLine()) != null){
                 stringList.add(line);
             }
+            if (stringList.isEmpty()){
+                System.out.println("NO DATA!");
+            }
             bufferedReader.close();
             fileReader.close();
         } catch (FileNotFoundException e) {

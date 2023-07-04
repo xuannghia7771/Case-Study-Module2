@@ -6,23 +6,16 @@ public abstract class Person {
     /*Họ tên, Ngày sinh, Giới tính, Số CMND, Số Điện Thoại, Email*/
     private String name;
     private String birthday;
-    private int gender;
+    private boolean gender;
     private String IDCard;
     private String phoneNumber;
     private String email;
-
-    static Map<Integer, String> genderMap = new HashMap<>();
-
-    static {
-        genderMap.put(0, "Female");
-        genderMap.put(1, "Male");
-    }
 
     public Person() {
 
     }
 
-    public Person(String name, String birthday, int gender, String IDCard, String phoneNumber, String email) {
+    public Person(String name, String birthday, boolean gender, String IDCard, String phoneNumber, String email) {
         this.name = name;
         this.birthday = birthday;
         this.gender = gender;
@@ -47,11 +40,11 @@ public abstract class Person {
         this.birthday = birthday;
     }
 
-    public int getGender() {
+    public boolean getGender() {
         return gender;
     }
 
-    public void setGender(int gender) {
+    public void setGender(boolean gender) {
         this.gender = gender;
     }
 
@@ -82,6 +75,6 @@ public abstract class Person {
     @Override
     public String toString() {
         /*Person(String name, String birthday, int gender, String IDCard, String phoneNumber, String email)*/
-        return String.format("|%s|%s|%s|%s|%s|%s", getName(), getBirthday(), genderMap.get(gender), getIDCard(), getPhoneNumber(), getEmail());
+        return String.format("|%s|%s|%s|%s|%s|%s", getName(), getBirthday(), getGender(), getIDCard(), getPhoneNumber(), getEmail());
     }
 }

@@ -10,7 +10,8 @@ public class Regex {
         final String REGEX_NAME = "^([A-Z]([a-z]+ ))+[A-Z][a-z]+$";
         String name;
         do {
-            System.out.println("Enter Name: ");
+            System.out.println("Enter name that is capitalized on the first letter of each word." +
+                    " For Example: Wayne Rooney");
             name = sc.nextLine();
             if (!name.matches(REGEX_NAME)) {
                 System.out.println("NAME IS INVALID!");
@@ -18,51 +19,25 @@ public class Regex {
         } while (!name.matches(REGEX_NAME));
         return name;
     }
-    public static String validateBirth(){
-        final String REGEX_DATE = "^(0?[1-9]|[12][0-9]|3[01])[/\\-](0?[1-9]|1[012])[/\\-]\\d{4}$";
-        String date;
+
+    public static String validateGender() {
+        final String REGEX_GENDER = "^true|false$";
+        String gender;
         do {
-            System.out.println("Enter Name: ");
-            date = sc.nextLine();
-            if (!date.matches(REGEX_DATE) && is18Plus(date)) {
-                System.out.println("DATE IS INVALID! OR AGE IS NOT ENOUGH 18");
+            System.out.println("Enter gender (true|Male) (false|Female)");
+            gender = sc.nextLine();
+            if (!gender.matches(REGEX_GENDER)){
+                System.out.println("GENDER IS INVALID!");
             }
-        } while (!date.matches(REGEX_DATE) && is18Plus(date));
-        return date;
-    }
-    public static boolean is18Plus(String dateStr) {
-        String[] array = dateStr.split("/");
-        Calendar calendar = Calendar.getInstance();
-        int year = Integer.parseInt(array[2]) + 18;
-        int month = Integer.parseInt(array[1]);
-        int day = Integer.parseInt(array[0]);
-        calendar.set(year, month, day);
-        Date date = new Date();
-        int compare = date.compareTo(calendar.getTime());
-        return compare >= 0;
-    }
-    public static int validateGender() {
-        try {
-            int gender;
-            do {
-                System.out.println("Enter Gender (0-Female) (1-Male): ");
-                gender = Integer.parseInt(sc.nextLine());
-                if (gender != 0 && gender != 1) {
-                    System.out.println("GENDER IS INVALID!");
-                }
-            } while (gender != 0 && gender != 1);
-            return gender;
-        }catch (Exception e){
-            System.out.println("WRONG CHOICE!");
-            return validateGender();
-        }
+        }while (!gender.matches(REGEX_GENDER));
+        return gender;
     }
 
     public static String validatePhoneNumber() {
         final String REGEX_PHONE_NUMBER = "^0[0-9]{9}$";
         String phoneNumber;
         do {
-            System.out.println("Enter phone number in format (0)-xxxxxxxxx : ");
+            System.out.println("Enter phone number in format (0)-xxxxxxxxx with 'xxxxxxxxx' in 0-9: ");
             phoneNumber = sc.nextLine();
             if (!phoneNumber.matches(REGEX_PHONE_NUMBER)) {
                 System.out.println("PHONE NUMBER IS INVALID!");
@@ -85,16 +60,28 @@ public class Regex {
     }
 
     public static String validateEmployeeID() {
-        final String REGEX_EMPLOYEE_ID = "^NV\\-\\d{4}$";
+        final String REGEX_EMPLOYEE_ID = "^NV-\\d{4}$";
         String employeeID;
         do {
             System.out.println("Enter employee ID in form (NV-xxxx) with 'xxxx' = 0-9: ");
             employeeID = sc.nextLine();
             if (!employeeID.matches(REGEX_EMPLOYEE_ID)) {
-                System.out.println("PHONE NUMBER IS INVALID!");
+                System.out.println("EMPLOYEE ID IS INVALID!");
             }
         } while (!employeeID.matches(REGEX_EMPLOYEE_ID));
         return employeeID;
+    }
+    public static String validateCustomerID() {
+        final String REGEX_CUSTOMER_ID = "^KH-\\d{4}$";
+        String customerID;
+        do {
+            System.out.println("Enter customer ID in form (KH-xxxx) with 'xxxx' = 0-9: ");
+            customerID = sc.nextLine();
+            if (!customerID.matches(REGEX_CUSTOMER_ID)) {
+                System.out.println("CUSTOMER ID IS INVALID!");
+            }
+        } while (!customerID.matches(REGEX_CUSTOMER_ID));
+        return customerID;
     }
 
     public static int validateAcademicLevel() {
@@ -129,11 +116,29 @@ public class Regex {
         } while (!position.matches(REGEX_POSITION));
         return Integer.parseInt(position);
     }
+    public static int validateCustomerType() {
+        final String REGEX_CUSTOMER_TYPE = "^[1-5]{1}$";
+        String type;
+        do {
+            System.out.println("Enter position as following choice " +
+                    "(1-Member) " +
+                    "(2-Silver) " +
+                    "(3-Gold) " +
+                    "(4-Platinum)" +
+                    "(5-Diamond)" +
+                    ": ");
+            type = sc.nextLine();
+            if (!type.matches(REGEX_CUSTOMER_TYPE)) {
+                System.out.println("CHOICE IS INVALID!");
+            }
+        } while (!type.matches(REGEX_CUSTOMER_TYPE));
+        return Integer.parseInt(type);
+    }
 
     public static int validateSalary() {
         int salary;
         do {
-            System.out.println("Enter salary over 0: ");
+            System.out.println("Enter salary that is greater 0: ");
             salary = Integer.parseInt(sc.nextLine());
             if (salary <= 0) {
                 System.out.println("SALARY IS INVALID!");
@@ -153,5 +158,18 @@ public class Regex {
             }
         } while (!id.matches(REGEX_ID_CARD));
         return id;
+    }
+    public static int checkIntegerParseInt(){
+        int value;
+        while (true){
+            try {
+                value = Integer.parseInt(sc.nextLine());
+                break;
+            } catch (NumberFormatException e){
+                System.out.println(e.getMessage());
+                System.out.println("Enter again: ");
+            }
+        }
+        return value;
     }
 }

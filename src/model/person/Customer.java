@@ -26,13 +26,19 @@ public class Customer extends Person {
         this.address = address;
     }
 
-    public Customer(String name, String birthday, int gender, String IDCard, String phoneNumber, String email, String customerID, int customerType, String address) {
+    public Customer(String name, String birthday, boolean gender, String IDCard, String phoneNumber, String email, String customerID, int customerType, String address) {
         super(name, birthday, gender, IDCard, phoneNumber, email);
         this.customerID = customerID;
         this.customerType = customerType;
         this.address = address;
     }
-
+    private String customerTypeInString;
+    public Customer(String name, String birthday, boolean gender, String IDCard, String phoneNumber, String email, String customerID, String type, String address) {
+        super(name, birthday, gender, IDCard, phoneNumber, email);
+        this.customerID = customerID;
+        customerTypeInString = type;
+        this.address = address;
+    }
     public String getCustomerID() {
         return customerID;
     }
@@ -56,13 +62,24 @@ public class Customer extends Person {
     public void setAddress(String address) {
         this.address = address;
     }
-
+    public String getInfo(){
+        /*String name, String birthday, boolean gender, String IDCard, String phoneNumber, String email, String customerID, int customerType, String address*/
+        return getName()+","+getBirthday()+","+getGender()+","+getIDCard()+","+getPhoneNumber()+","+getEmail()+","+getCustomerID()+","+customerTypeMap.get(getCustomerType())+","+getAddress();
+    }
     @Override
     public String toString() {
         /*Customer(String customerID, int customerType, String address)*/
-        return super.toString() + String.format("%s|%s|%s|",
+        return super.toString() + String.format("|%s|%s|%s|",
                 getCustomerID(),
-                customerTypeMap.get(customerType),
+                getCustomerTypeInString(),
                 getAddress());
+    }
+
+    public String getCustomerTypeInString() {
+        return customerTypeInString;
+    }
+
+    public void setCustomerTypeInString(String customerTypeInString) {
+        this.customerTypeInString = customerTypeInString;
     }
 }
